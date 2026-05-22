@@ -1,151 +1,159 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, query, orderBy, where } from "firebase/firestore";
 
-// REPLACE THESE SYNC CODES WITH VARIABLES GENERATED FROM YOUR FIREBASE WEB PROJECT SETUP PANEL
+// Your Explicit App Infrastructure Metrics Object Link Injection 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY_HERE",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBC-9dYZspjbkH9-XcVx7jzyI8APPotR_I",
+    authDomain: "attestifyhub.firebaseapp.com",
+    projectId: "attestifyhub",
+    storageBucket: "attestifyhub.firebasestorage.app",
+    messagingSenderId: "140396215714",
+    appId: "1:140396215714:web:c44d4377202bfabd4286fb",
+    measurementId: "G-GRN4DPJ4Z8"
 };
 
-// Initialize Application Modules
+// Initialize Instance
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Simple Mobile Navigation Handler
+// Simple Responsive Nav Toggle Execution
 document.getElementById('menu-btn').addEventListener('click', () => {
     const menu = document.getElementById('mobile-menu');
     menu.classList.toggle('hidden');
 });
 
-// Single Page Routing Core
-window.addEventListener('hashchange', handleRouting);
-window.addEventListener('load', handleRouting);
+// Routing Controller Logic Matrix
+window.addEventListener('hashchange', routerPipeline);
+window.addEventListener('load', routerPipeline);
 
-function handleRouting() {
+function routerPipeline() {
     const hash = window.location.hash || '#/';
-    document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+    const sections = document.querySelectorAll('.view-section');
+    
+    sections.forEach(sec => {
+        sec.classList.remove('active-view');
+        sec.style.opacity = '0';
+    });
     document.getElementById('mobile-menu').classList.add('hidden');
 
-    if (hash === '#/' || hash === '') {
-        document.getElementById('home-view').classList.add('active');
-        fetchArticles(true);
-    } else if (hash === '#/blog') {
-        document.getElementById('blog-view').classList.add('active');
-        fetchArticles(false);
-    } else if (hash.startsWith('#/post/')) {
-        const slug = hash.replace('#/post/', '');
-        document.getElementById('post-view').classList.add('active');
-        renderSinglePost(slug);
-    } else if (hash === '#/admin') {
-        document.getElementById('admin-view').classList.add('active');
-    }
+    setTimeout(() => {
+        if (hash === '#/' || hash === '') {
+            renderView('home-view');
+            fetchCollectionRecords(true);
+        } else if (hash === '#/blog') {
+            renderView('blog-view');
+            fetchCollectionRecords(false);
+        } else if (hash.startsWith('#/post/')) {
+            const cleanSlug = hash.replace('#/post/', '');
+            renderView('post-view');
+            compileIndividualArticle(cleanSlug);
+        } else if (hash === '#/admin') {
+            renderView('admin-view');
+        }
+    }, 200); // Gives time for smooth fade out
 }
 
-// Fetch content collections dynamically from cloud databases
-async function fetchArticles(isFeaturedOnly = false) {
-    const gridId = isFeaturedOnly ? 'featured-grid' : 'blog-grid';
-    const targetElement = document.getElementById(gridId);
-    if (!targetElement) return;
+function renderView(viewId) {
+    const target = document.getElementById(viewId);
+    target.classList.add('active-view');
+    setTimeout(() => { target.style.opacity = '1'; }, 50);
+}
 
-    targetElement.innerHTML = `
-        <div class="col-span-full text-center py-12 text-slate-400">
-            <i class="fa-solid fa-circle-notch animate-spin text-3xl mb-3 text-blue-600"></i>
-            <p class="text-sm font-medium">Syncing database collections...</p>
+// Pull Content from Database Dynamic Fields
+async function fetchCollectionRecords(isFeaturedOnly = false) {
+    const componentTarget = isFeaturedOnly ? 'featured-grid' : 'blog-grid';
+    const domElement = document.getElementById(componentTarget);
+    if (!domElement) return;
+
+    domElement.innerHTML = `
+        <div class="col-span-full text-center py-16 text-slate-400">
+            <i class="fa-solid fa-compass-drafting animate-spin text-3xl mb-3 text-indigo-600"></i>
+            <p class="text-xs font-semibold tracking-wide uppercase">Streaming Schema Manifests...</p>
         </div>`;
 
     try {
-        let q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-        if (isFeaturedOnly) {
-            // Fetch maximum 3 items if on the landing preview view card strip
-            q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-        }
-        
-        const querySnapshot = await getDocs(q);
-        targetElement.innerHTML = "";
+        const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+        const snapshot = await getDocs(q);
+        domElement.innerHTML = "";
 
-        if (querySnapshot.empty) {
-            targetElement.innerHTML = `<p class="col-span-full text-center py-12 text-slate-500">No regulatory guides published yet.</p>`;
+        if (snapshot.empty) {
+            domElement.innerHTML = `<p class="col-span-full text-center py-12 text-slate-400 font-medium text-sm">No verification documentation logged in this index node.</p>`;
             return;
         }
 
-        let counter = 0;
-        querySnapshot.forEach((doc) => {
-            if (isFeaturedOnly && counter >= 3) return; // Cap landing page metrics
-            const post = doc.data();
-            targetElement.innerHTML += buildPostCardMarkup(post);
-            counter++;
+        let loopLimit = 0;
+        snapshot.forEach((doc) => {
+            if (isFeaturedOnly && loopLimit >= 3) return;
+            const data = doc.data();
+            domElement.innerHTML += buildCardTemplate(data);
+            loopLimit++;
         });
-    } catch (error) {
-        console.error("Database compilation exception:", error);
-        targetElement.innerHTML = `<p class="col-span-full text-rose-600 text-center py-12 font-medium">Unable to stream dynamic records. Verify security configurations.</p>`;
+    } catch (err) {
+        console.error("Database streaming error:", err);
+        domElement.innerHTML = `<p class="col-span-full text-center text-rose-600 text-sm font-semibold">Data Pipeline Interrupted.</p>`;
     }
 }
 
-function buildPostCardMarkup(post) {
-    const fallbackImg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f1f5f9'/></svg>";
+function buildCardTemplate(post) {
+    const fallback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f1f5f9'/></svg>";
     return `
-        <article class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-md shadow-slate-100/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-            <div class="h-48 w-full bg-slate-100 relative overflow-hidden">
-                <img src="${post.imageUrl || fallbackImg}" class="w-full h-full object-cover" alt="${post.title}" loading="lazy">
-                <span class="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-sm text-white px-3 py-1 rounded-md text-xs font-bold tracking-wide uppercase">${post.category || 'Compliance'}</span>
+        <article class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+            <div class="h-52 w-full bg-slate-100 relative overflow-hidden">
+                <img src="${post.imageUrl || fallback}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="${post.title}" loading="lazy">
+                <span class="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-white px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest">${post.category || 'Compliance'}</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                 <div class="space-y-2">
-                    <h3 class="text-xl font-bold text-slate-900 tracking-tight line-clamp-2 hover:text-blue-600 transition">
+                    <h3 class="text-lg font-bold text-slate-900 tracking-tight line-clamp-2 group-hover:text-indigo-600 transition">
                         <a href="#/post/${post.slug}">${post.title}</a>
                     </h3>
-                    <p class="text-slate-500 text-sm line-clamp-3 leading-relaxed">${post.content.replace(/<[^>]*>/g, '').substring(0, 130)}...</p>
+                    <p class="text-slate-500 text-sm line-clamp-3 leading-relaxed font-medium">${post.content.replace(/<[^>]*>/g, '').substring(0, 120)}...</p>
                 </div>
-                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <span class="text-xs font-semibold text-slate-400"><i class="fa-regular fa-calendar mr-1.5"></i>${new Date(post.createdAt?.seconds * 1000).toLocaleDateString()}</span>
-                    <a href="#/post/${post.slug}" class="text-blue-600 hover:text-blue-700 text-sm font-bold inline-flex items-center group">Read Manual <i class="fa-solid fa-arrow-right ml-1.5 transform group-hover:translate-x-1 transition"></i></a>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
+                    <span class="text-slate-400 uppercase tracking-wider"><i class="fa-regular fa-calendar-check mr-1.5 text-indigo-500"></i>${new Date(post.createdAt?.seconds * 1000).toLocaleDateString()}</span>
+                    <a href="#/post/${post.slug}" class="text-indigo-600 hover:text-indigo-700 inline-flex items-center">Open Manual <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i></a>
                 </div>
             </div>
         </article>
     `;
 }
 
-async function renderSinglePost(slug) {
-    const titleEl = document.getElementById('post-title');
-    const metaEl = document.getElementById('post-meta');
-    const imgEl = document.getElementById('post-hero-image');
-    const contentEl = document.getElementById('post-content');
+async function compileIndividualArticle(slug) {
+    const title = document.getElementById('post-title');
+    const meta = document.getElementById('post-meta');
+    const img = document.getElementById('post-hero-image');
+    const body = document.getElementById('post-content');
 
-    contentEl.innerHTML = `<div class="text-center py-12"><i class="fa-solid fa-spinner animate-spin text-2xl text-blue-600"></i></div>`;
+    body.innerHTML = `<div class="text-center py-20"><i class="fa-solid fa-spinner animate-spin text-3xl text-indigo-600"></i></div>`;
 
     try {
-        const q = query(collection(db, "posts"), where("slug", "===", slug));
-        const querySnapshot = await getDocs(q);
+        const q = query(collection(db, "posts"), where("slug", "==", slug));
+        const snapshot = await getDocs(q);
 
-        if (querySnapshot.empty) {
-            titleEl.innerText = "Guide Index Record Missing";
-            contentEl.innerHTML = "<p class='text-rose-600'>The document directory route you requested could not be resolved on-chain.</p>";
-            imgEl.classList.add('hidden');
+        if (snapshot.empty) {
+            title.innerText = "Directory Node Missing";
+            body.innerHTML = "<p class='text-sm font-semibold text-rose-600'>The clean route string supplied does not map to an authenticated data packet structure on-chain.</p>";
+            img.classList.add('hidden');
             return;
         }
 
-        querySnapshot.forEach((doc) => {
-            const post = doc.data();
-            titleEl.innerText = post.title;
-            metaEl.innerText = `${post.category} | Published ${new Date(post.createdAt?.seconds * 1000).toLocaleDateString()}`;
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            title.innerText = data.title;
+            meta.innerText = `${data.category} // Issued ${new Date(data.createdAt?.seconds * 1000).toLocaleDateString()}`;
             
-            if(post.imageUrl) {
-                imgEl.src = post.imageUrl;
-                imgEl.classList.remove('hidden');
+            if (data.imageUrl) {
+                img.src = data.imageUrl;
+                img.classList.remove('hidden');
             } else {
-                imgEl.classList.add('hidden');
+                img.classList.add('hidden');
             }
             
-            // Render structured HTML safely injected into content wrapper
-            contentEl.innerHTML = post.content.replace(/\n/g, '<br>');
-            document.title = `${post.title} | AttestifyHub`;
+            body.innerHTML = data.content.replace(/\n/g, '<br>');
+            document.title = `${data.title} | AttestifyHub Guide`;
         });
-    } catch (error) {
-        console.error("Content retrieval failure:", error);
+    } catch (err) {
+        console.error("Pipeline breakdown failure:", err);
     }
 }
 
