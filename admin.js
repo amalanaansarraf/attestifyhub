@@ -1,4 +1,4 @@
-import { initializeApp, getApp } from "firebase/app";
+import { getApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -8,88 +8,82 @@ const app = getApp();
 const auth = getAuth(app);
 const storage = getStorage(app);
 
-const authBlock = document.getElementById('admin-auth');
-const dashBlock = document.getElementById('admin-dashboard');
+const loginWrap = document.getElementById('admin-auth');
+const deskWrap = document.getElementById('admin-dashboard');
 
-// Session Event State Tracker
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        authBlock.classList.add('hidden');
-        dashBlock.classList.remove('hidden');
+onAuthStateChanged(auth, (sessionUser) => {
+    if (sessionUser) {
+        loginWrap.classList.add('hidden');
+        deskWrap.classList.remove('hidden');
     } else {
-        authBlock.classList.remove('hidden');
-        dashBlock.classList.add('hidden');
+        loginWrap.classList.remove('hidden');
+        deskWrap.classList.add('hidden');
     }
 });
 
-// Processing Login
+// Authorizing Identity Credentials
 document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const pass = document.getElementById('login-password').value;
+    const mail = document.getElementById('login-email').value;
+    const word = document.getElementById('login-password').value;
     try {
-        await signInWithEmailAndPassword(auth, email, pass);
-    } catch (error) {
-        alert("Authorization Denied: " + error.message);
+        await signInWithEmailAndPassword(auth, mail, word);
+    } catch (err) {
+        alert("Authentication Blocked: " + err.message);
     }
 });
 
-// Terminate Session
-document.getElementById('logout-btn').addEventListener('click', () => {
-    signOut(auth);
-});
+document.getElementById('logout-btn').addEventListener('click', () => { signOut(auth); });
 
-// Automate standard input slug generation patterns for clean URLs
+// Automated Clean SEO Slug Generation Pipeline Engine
 document.getElementById('post-input-title').addEventListener('input', (e) => {
-    const slugInput = document.getElementById('post-input-slug');
-    slugInput.value = e.target.value
+    const slugBox = document.getElementById('post-input-slug');
+    slugBox.value = e.target.value
         .toLowerCase()
-        .replace(/[^a-z0-9 -]/g, '') // strip invalid symbols
-        .replace(/\s+/g, '-')       // swap spaces with hyphens
-        .replace(/-+/g, '-');       // squeeze repetitive breaks
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '')  // Wipe illegal structures
+        .replace(/\s+/g, '-')          // Transform empty margins to single hyphens
+        .replace(/-+/g, '-');          // Squeeze continuous hyphens
 });
 
-// Content Publish Pipeline Routine
+// Publish Form Submission Matrix
 document.getElementById('post-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const submitBtn = document.getElementById('submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Uploading Payload to Servers...";
+    const actionButton = document.getElementById('submit-btn');
+    actionButton.disabled = true;
+    actionButton.innerText = "Uploading Payload to Storage Cluster...";
 
     const title = document.getElementById('post-input-title').value;
     const slug = document.getElementById('post-input-slug').value;
     const category = document.getElementById('post-input-category').value;
-    const file = document.getElementById('post-input-image').files[0];
-    const content = document.getElementById('post-input-content').value;
+    const fileAsset = document.getElementById('post-input-image').files[0];
+    const explicitContent = document.getElementById('post-input-content').value;
 
-    let imageUrl = "";
+    let resolvedImageUrl = "";
 
     try {
-        // 1. Process Media Upload if Asset Array is present
-        if (file) {
-            const storageRef = ref(storage, `blog_images/${Date.now()}_${file.name}`);
-            const uploadSnapshot = await uploadBytes(storageRef, file);
-            imageUrl = await getDownloadURL(uploadSnapshot.ref);
+        if (fileAsset) {
+            const fileRef = ref(storage, `blog_images/${Date.now()}_${fileAsset.name}`);
+            const snapshot = await uploadBytes(fileRef, fileAsset);
+            resolvedImageUrl = await getDownloadURL(snapshot.ref);
         }
 
-        // 2. Transmit Formatted Object to Firestore Collection Array
         await addDoc(collection(db, "posts"), {
             title,
             slug,
             category,
-            imageUrl,
-            content,
+            imageUrl: resolvedImageUrl,
+            content: explicitContent,
             createdAt: serverTimestamp()
         });
 
-        alert("Operational Manual Successfully Published!");
+        alert("Data Packet Successfully Committed!");
         document.getElementById('post-form').reset();
-        window.location.hash = "#/blog"; // Route to live catalog
-    } catch (error) {
-        console.error("Submission crash exception:", error);
-        alert("Failed to commit document structure: " + error.message);
+        window.location.hash = "#/blog";
+    } catch (err) {
+        alert("Transaction Failed: " + err.message);
     } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Commit Article to Blockchain & Database";
+        actionButton.disabled = false;
+        actionButton.innerText = "Commit Metadata Record to Cluster";
     }
 });
