@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AttestifyHub | Premier UAE Document Legalization Guide</title>
+    <meta name="description" content="Your ultimate resource for UAE document attestation, visa compliance, and diplomatic legalization procedures.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        [v-cloak] { display: none !important; }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#/" class="flex items-center space-x-3 group">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md group-hover:bg-blue-700 transition">
+                    <i class="fa-solid fa-gavel text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-slate-900 tracking-tight">Attestify<span class="text-blue-600">Hub</span></span>
+            </a>
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#/" class="text-slate-600 hover:text-blue-600 transition">Home</a>
+                <a href="#/blog" class="text-slate-600 hover:text-blue-600 transition">All Guides</a>
+                <a href="#/admin" class="text-slate-500 hover:text-slate-900 transition"><i class="fa-solid fa-lock mr-1"></i> Admin</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-slate-600 focus:outline-none text-2xl"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden border-b border-slate-200 bg-white px-4 py-4 space-y-3 shadow-inner md:hidden">
+            <a href="#/" class="block text-slate-700 font-medium">Home</a>
+            <a href="#/blog" class="block text-slate-700 font-medium">All Guides</a>
+            <a href="#/admin" class="block text-slate-500 font-medium"><i class="fa-solid fa-lock mr-1"></i> Admin</a>
+        </div>
+    </header>
+
+    <!-- Main Content Containers -->
+    <main class="flex-grow">
+        
+        <!-- 1. HOME VIEW -->
+        <section id="home-view" class="view-section active">
+            <!-- Hero Section -->
+            <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white py-20 px-4 sm:px-6 lg:px-8 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wider mb-6 inline-block">Independent Knowledge Portal</span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">Master UAE Attestation & Visa Formalities</h1>
+                    <p class="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto">Step-by-step guides, legal protocols, and document preparation frameworks without commercial bias.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#/blog" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-blue-600/20 transition-all text-center">Explore All Manuals</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Featured Content Feed -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h2 class="text-3xl font-bold text-slate-950 mb-8 border-b pb-4 flex items-center"><i class="fa-solid fa-bolt text-amber-500 mr-3"></i>Latest Operational Manuals</h2>
+                <div id="featured-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- Dynamic inject -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. BLOG LIST VIEW -->
+        <section id="blog-view" class="view-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h1 class="text-4xl font-extrabold text-slate-950 mb-4">Complete Document Ledger</h1>
+                <p class="text-slate-600">Browse our comprehensive list of legal deep-dives to navigate cross-border bureaucratic procedures safely.</p>
+            </div>
+            <div id="blog-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Dynamic inject -->
+            </div>
+        </section>
+
+        <!-- 3. SINGLE POST VIEW (SEO Friendly/Scannable Layout) -->
+        <section id="post-view" class="view-section max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <article class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xl shadow-slate-100/40">
+                <a href="#/blog" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium mb-6 transition"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Logs</a>
+                <div id="post-meta" class="mb-4 text-sm font-semibold text-slate-500 uppercase tracking-wider"></div>
+                <h1 id="post-title" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight mb-8"></h1>
+                <img id="post-hero-image" class="w-full h-[400px] object-cover rounded-2xl mb-10 border border-slate-100 shadow-inner hidden" alt="Article Visual">
+                <div id="post-content" class="prose prose-slate max-w-none text-slate-700 text-lg leading-relaxed space-y-6">
+                    <!-- Body data goes here -->
+                </div>
+                
+                <!-- Anti-Cannibalization Referral Box -->
+                <div class="mt-16 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="space-y-2 text-center md:text-left">
+                        <h4 class="text-xl font-bold text-slate-900">Need Certified Field Execution?</h4>
+                        <p class="text-slate-600 text-base">Avoid administrative delays. Hand off certificate collection and Ministry verification safely to our trusted partner framework.</p>
+                    </div>
+                    <!-- Replace href with main commercial portal domain link -->
+                    <a href="https://attestation.ae" target="_blank" rel="noopener noreferrer" class="bg-slate-950 hover:bg-slate-900 text-white font-bold px-6 py-3.5 rounded-xl transition whitespace-nowrap shadow-md shadow-slate-950/10">Delegate Your Case <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-sm"></i></a>
+                </div>
+            </article>
+        </section>
+
+        <!-- 4. SECURE ADMIN VIEW (Inline Operations Room) -->
+        <section id="admin-view" class="view-section max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <!-- Login Block -->
+            <div id="admin-auth" class="bg-white border border-slate-200 p-8 rounded-2xl shadow-xl max-w-md mx-auto">
+                <h2 class="text-2xl font-bold text-slate-950 text-center mb-6"><i class="fa-solid fa-shield-halved text-blue-600 mr-2"></i>Admin Console Login</h2>
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-slate-600">Email Address</label>
+                        <input type="email" id="login-email" required class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-slate-600">Security Phrase</label>
+                        <input type="password" id="login-password" required class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-blue-600/10">Authorize Access</button>
+                </form>
+            </div>
+
+            <!-- Content Panel Block (Hidden until auth verification) -->
+            <div id="admin-dashboard" class="hidden bg-white border border-slate-200 p-6 sm:p-10 rounded-3xl shadow-xl space-y-8">
+                <div class="flex items-center justify-between border-b pb-4">
+                    <h2 class="text-2xl font-black text-slate-950"><i class="fa-solid fa-pen-nib text-blue-600 mr-2"></i>Publish New Manual</h2>
+                    <button id="logout-btn" class="text-rose-600 font-bold text-sm bg-rose-50 border border-rose-100 px-3 py-1.5 rounded-lg hover:bg-rose-100 transition">Terminate Session</button>
+                </div>
+                <form id="post-form" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Article Headline</label>
+                        <input type="text" id="post-input-title" required placeholder="e.g., How to Obtain a UAE Family Visa" class="w-full border border-slate-300 rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-600 text-lg">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">SEO Friendly URL Path Slug</label>
+                            <input type="text" id="post-input-slug" required placeholder="how-to-obtain-uae-family-visa" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600 text-sm font-mono text-slate-600">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Content Category</label>
+                            <select id="post-input-category" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600 bg-white">
+                                <option value="Attestation Guides">Attestation Guides</option>
+                                <option value="Visa Protocols">Visa Protocols</option>
+                                <option value="Corporate Setup">Corporate Setup</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Hero Asset Image</label>
+                        <input type="file" id="post-input-image" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Core Copywriting Markup (Supports plain text HTML breaks)</label>
+                        <textarea id="post-input-content" rows="12" required placeholder="Write the comprehensive structural layout here..." class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600 font-sans"></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-slate-950 hover:bg-slate-900 text-white font-bold py-4 rounded-xl transition shadow-xl">Commit Article to Blockchain & Database</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <p class="text-sm font-medium">&copy; 2026 AttestifyHub. Dedicated independent verification compliance reference documentation portal.</p>
+            <p class="text-xs text-slate-600">Disclaimer: AttestifyHub operates explicitly as a publication resource platform. No direct regulatory binding implied.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase Script Architecture Injection (v9 Modular Web Components) -->
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js",
+                "firebase/auth": "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js",
+                "firebase/storage": "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"
+            }
+        }
+    </script>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
