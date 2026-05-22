@@ -97,21 +97,22 @@ async function fetchCollectionRecords(isFeaturedOnly = false) {
 function buildCardTemplate(post) {
     const fallback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f1f5f9'/></svg>";
     return `
-        <article class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col group">
-            <div class="h-52 w-full bg-slate-100 relative overflow-hidden">
-                <img src="${post.imageUrl || fallback}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt="${post.title}" loading="lazy">
-                <span class="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-white px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest">${post.category || 'Compliance'}</span>
+        <article class="animate-reveal bg-white border border-slate-200/50 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col group">
+            <div class="h-56 w-full bg-slate-900 relative overflow-hidden shrink-0">
+                <img src="${post.imageUrl || fallback}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out" alt="${post.title}" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
+                <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest border border-white/10">${post.category || 'Compliance'}</span>
             </div>
-            <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                <div class="space-y-2">
-                    <h3 class="text-lg font-bold text-slate-900 tracking-tight line-clamp-2 group-hover:text-indigo-600 transition">
+            <div class="p-6 flex-grow flex flex-col justify-between space-y-5">
+                <div class="space-y-3">
+                    <h3 class="text-xl font-bold text-slate-950 tracking-tight leading-snug group-hover:text-indigo-600 transition duration-300 line-clamp-2">
                         <a href="#/post/${post.slug}">${post.title}</a>
                     </h3>
-                    <p class="text-slate-500 text-sm line-clamp-3 leading-relaxed font-medium">${post.content.replace(/<[^>]*>/g, '').substring(0, 120)}...</p>
+                    <p class="text-slate-500 text-sm line-clamp-3 leading-relaxed font-medium">${post.content.replace(/<[^>]*>/g, '').substring(0, 130)}...</p>
                 </div>
-                <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
-                    <span class="text-slate-400 uppercase tracking-wider"><i class="fa-regular fa-calendar-check mr-1.5 text-indigo-500"></i>${new Date(post.createdAt?.seconds * 1000).toLocaleDateString()}</span>
-                    <a href="#/post/${post.slug}" class="text-indigo-600 hover:text-indigo-700 inline-flex items-center">Open Manual <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i></a>
+                <div class="pt-4 border-t border-slate-100/80 flex items-center justify-between text-xs font-bold">
+                    <span class="text-slate-400 uppercase tracking-widest flex items-center"><i class="fa-regular fa-clock text-indigo-500 mr-2 text-sm"></i>${post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Active Node'}</span>
+                    <a href="#/post/${post.slug}" class="text-indigo-600 group-hover:text-indigo-700 inline-flex items-center space-x-1.5 transition-colors"><span>Analyze Manual</span> <i class="fa-solid fa-chevron-right text-[9px] transform group-hover:translate-x-0.5 transition"></i></a>
                 </div>
             </div>
         </article>
