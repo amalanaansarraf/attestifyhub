@@ -37,24 +37,57 @@
 
     <main class="flex-grow">
         
-        <section id="home-view" class="view-section active-view">
-            <div class="bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-950 text-white py-24 px-4 text-center relative overflow-hidden">
-                <div class="max-w-3xl mx-auto relative z-10 space-y-6">
-                    <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest inline-block animate-pulse">2026 Regulatory Database</span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">Decoupling UAE Attestation Protocol Complexity</h1>
-                    <p class="text-base sm:text-lg text-slate-400 max-w-xl mx-auto font-medium">Clear, unsponsored verification matrices designed to smooth international processing tracks.</p>
-                    <div class="pt-4">
-                        <a href="#/blog" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-indigo-600/20 transition-all transform hover:-translate-y-0.5 inline-block">Access Master Dossier</a>
+        <section id="home-view" class="view-section active-view bg-slate-900 overflow-hidden">
+            
+            <div class="relative py-28 sm:py-36 px-4 text-center border-b border-slate-800/60 bg-slate-950">
+                <div class="absolute top-1/4 left-1/4 w-80 h-80 bg-indigo-600/15 rounded-full filter blur-[80px] animate-blob pointer-events-none"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full filter blur-[100px] animate-blob pointer-events-none animation-delay-2000"></div>
+
+                <div class="max-w-4xl mx-auto relative z-10 space-y-8">
+                    <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 rounded-full backdrop-blur-md transform transition hover:scale-105 duration-300">
+                        <span class="h-2 w-2 bg-indigo-400 rounded-full animate-ping"></span>
+                        <span class="text-xs font-bold tracking-widest text-indigo-300 uppercase">Independent 2026 Documentation Hub</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-none">
+                        Decoupling UAE Attestation <br class="hidden sm:inline" />
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-blue-400 to-emerald-400">
+                            Protocol Complexity
+                        </span>
+                    </h1>
+                    
+                    <p class="text-base sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
+                        Accelerate relocation checks. Access completely unsponsored document processing architectures, embassy verifications, and visa clearance frameworks.
+                    </p>
+                    
+                    <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#/blog" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-indigo-600/20 transition-all duration-300 transform hover:-translate-y-1 text-center group">
+                            Access Master Dossier 
+                            <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                        <button onclick="document.getElementById('focus-grid-anchor').scrollIntoView({behavior:'smooth'})" class="w-full sm:w-auto text-slate-300 hover:text-white font-bold px-6 py-4 rounded-xl transition duration-300 text-center flex items-center justify-center space-x-2">
+                            <span>Browse Directives</span>
+                            <i class="fa-solid fa-chevron-down text-xs animate-bounce mt-0.5"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="flex items-center justify-between mb-12">
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">Recent Field Deep-Dives</h2>
-                    <a href="#/blog" class="text-indigo-600 hover:text-indigo-700 font-bold text-sm flex items-center group">View Index <i class="fa-solid fa-arrow-right ml-1 transform group-hover:translate-x-1 transition"></i></a>
+
+            <div id="focus-grid-anchor" class="bg-slate-50 py-24 border-t border-slate-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 animate-reveal">
+                        <div class="space-y-2">
+                            <h2 class="text-2xl sm:text-4xl font-black text-slate-950 tracking-tight">Recent Field Deep-Dives</h2>
+                            <p class="text-slate-500 font-medium text-sm sm:text-base">Meticulously compiled operational logs tracking public regulatory guidelines.</p>
+                        </div>
+                        <a href="#/blog" class="bg-white border border-slate-200/80 hover:border-slate-300 text-slate-800 font-bold text-sm px-5 py-3 rounded-xl flex items-center gap-2 shadow-sm transition-all duration-300 hover:shadow group shrink-0">
+                            <span>Explore Entire Archive</span> 
+                            <i class="fa-solid fa-arrow-right text-xs text-indigo-500 transform group-hover:translate-x-1 transition"></i>
+                        </a>
+                    </div>
+                    
+                    <div id="featured-grid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
                 </div>
-                <div id="featured-grid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
             </div>
         </section>
 
