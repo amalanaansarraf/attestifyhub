@@ -11,9 +11,9 @@ const storage = getStorage(app);
 const loginWrap = document.getElementById('admin-auth');
 const deskWrap = document.getElementById('admin-dashboard');
 
-let quillEditor; // Local pointer holding the rich text initialization object array
+let quillEditor;
+let activePostsCache = []; // Holding elements array snapshot safely to manage local key searches quickly
 
-// Initialize Rich Text Console Layouts
 function initializeRichTextEditor() {
     if (document.getElementById('editor-container') && !quillEditor) {
         quillEditor = new Quill('#editor-container', {
@@ -21,9 +21,9 @@ function initializeRichTextEditor() {
             modules: {
                 toolbar: [
                     [{ 'header': [2, 3, false] }],
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['bold', 'italic', 'underline'],
                     [{ 'align': [] }],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
                     ['link', 'clean']
                 ]
             }
@@ -31,7 +31,6 @@ function initializeRichTextEditor() {
     }
 }
 
-// Session Event State Tracker Initialization Node
 onAuthStateChanged(auth, (sessionUser) => {
     if (sessionUser) {
         loginWrap.classList.add('hidden');
@@ -40,152 +39,141 @@ onAuthStateChanged(auth, (sessionUser) => {
         syncAdminLedgerList();
     } else {
         loginWrap.classList.remove('hidden');
-        dashBlock.classList.add('hidden');
+        deskWrap.classList.add('hidden');
     }
 });
 
-// Authorizing Identity Credentials
 document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const mail = document.getElementById('login-email').value;
     const word = document.getElementById('login-password').value;
-    try {
-        await signInWithEmailAndPassword(auth, mail, word);
-    } catch (err) {
-        alert("Authentication Blocked: " + err.message);
-    }
+    try { await signInWithEmailAndPassword(auth, mail, word); } catch (err) { alert("Authorization Error: " + err.message); }
 });
 
 document.getElementById('logout-btn').addEventListener('click', () => { signOut(auth); });
 
-// Automated Clean SEO Slug Generation Engine Configuration
 document.getElementById('post-input-title').addEventListener('input', (e) => {
-    // Block generation routines if currently editing existing documents
     if(document.getElementById('post-edit-id').value !== "") return;
-    
-    const slugBox = document.getElementById('post-input-slug');
-    slugBox.value = e.target.value
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9\s-]/g, '')  
-        .replace(/\s+/g, '-')          
-        .replace(/-+/g, '-');          
+    document.getElementById('post-input-slug').value = e.target.value
+        .toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
 });
 
-// Fetch and render the structural admin data list array inside the right sidebar ledger panel
+// Sync data rows from Firestore database and calculate dashboard metrics values
 async function syncAdminLedgerList() {
     const container = document.getElementById('admin-posts-ledger');
     if (!container) return;
 
-    container.innerHTML = `<div class="text-center py-8 text-slate-400 text-xs font-semibold"><i class="fa-solid fa-arrows-spin animate-spin mr-1.5"></i>Syncing Index Ledger Data...</div>`;
+    container.innerHTML = `<div class="text-center py-12 text-slate-400 text-sm font-semibold"><i class="fa-solid fa-spinner animate-spin mr-2 text-indigo-600"></i>Refreshing Records Desk...</div>`;
 
     try {
         const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
         const snapshot = await getDocs(q);
-        container.innerHTML = "";
-
-        if (snapshot.empty) {
-            container.innerHTML = `<p class="text-center py-6 text-slate-400 text-xs font-medium">No live documentation packages found.</p>`;
-            return;
-        }
-
-        snapshot.forEach((docRecord) => {
-            const item = docRecord.data();
-            const id = docRecord.id;
-
-            // Generate structural element layouts mapping administrative command triggers securely 
-            const entryItemHtml = `
-                <div class="p-3 border border-slate-100 rounded-xl bg-slate-50/50 flex flex-col space-y-2 group transition hover:bg-white hover:border-slate-200">
-                    <div class="space-y-0.5">
-                        <span class="text-[9px] font-black uppercase text-indigo-600 tracking-wider bg-indigo-50 px-2 py-0.5 rounded">${item.category}</span>
-                        <h4 class="text-xs font-bold text-slate-900 tracking-tight line-clamp-1 mt-1">${item.title}</h4>
-                        <p class="text-[10px] font-mono text-slate-400 truncate">#/${item.slug}</p>
-                    </div>
-                    <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100/60">
-                        <button type="button" data-id="${id}" class="edit-trigger-btn text-[11px] font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50/40 hover:bg-indigo-50 px-2.5 py-1 rounded-md transition"><i class="fa-solid fa-pen mr-1"></i>Edit</button>
-                        <button type="button" data-id="${id}" class="delete-trigger-btn text-[11px] font-bold text-rose-600 hover:text-rose-800 bg-rose-50/40 hover:bg-rose-50 px-2.5 py-1 rounded-md transition"><i class="fa-solid fa-trash-can mr-1"></i>Delete</button>
-                    </div>
-                </div>
-            `;
-            container.innerHTML += entryItemHtml;
+        
+        activePostsCache = [];
+        snapshot.forEach(docObj => {
+            activePostsCache.push({ id: docObj.id, ...docObj.data() });
         });
 
-        // Register tracking hook variables dynamically 
-        attachManagementEventListeners(snapshot);
+        // Set the Total Posts metric count indicator field
+        document.getElementById('metric-total-posts').innerText = activePostsCache.length;
+
+        renderLedgerRows(activePostsCache);
 
     } catch (err) {
-        console.error("Ledger rendering failure error:", err);
-        container.innerHTML = `<p class="text-xs text-center text-rose-500 font-semibold">Ledger Pipeline Interrupted.</p>`;
+        console.error("Critical stream error failure:", err);
+        container.innerHTML = `<p class="text-xs text-center text-rose-500 font-semibold">Ledger Connection Interrupted.</p>`;
     }
 }
 
-function attachManagementEventListeners(snapshot) {
-    // Delete action tracking routines
+function renderLedgerRows(postsArray) {
+    const container = document.getElementById('admin-posts-ledger');
+    container.innerHTML = "";
+
+    if (postsArray.length === 0) {
+        container.innerHTML = `<p class="text-center py-12 text-slate-400 text-sm font-medium">No files match your current filter parameters.</p>`;
+        return;
+    }
+
+    postsArray.forEach((item) => {
+        const fallbackGraphic = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f1f5f9'/></svg>";
+        const rowHtml = `
+            <div class="p-4 border border-slate-100 rounded-xl bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition hover:shadow-md hover:border-slate-200/80">
+                <div class="flex items-center space-x-4 min-w-0">
+                    <img src="${item.imageUrl || fallbackGraphic}" class="w-14 h-14 object-cover rounded-lg border bg-slate-50 shrink-0" alt="Thumbnail">
+                    <div class="min-w-0 space-y-0.5">
+                        <h4 class="text-sm font-bold text-slate-900 truncate tracking-tight pr-2">${item.title}</h4>
+                        <div class="bg-slate-100 text-slate-600 text-[10px] font-mono px-2 py-1 rounded inline-block max-w-full truncate">slug: ${item.slug}</div>
+                        <p class="text-[10px] font-semibold text-slate-400 tracking-tight">${item.createdAt ? new Date(item.createdAt.seconds * 1000).toLocaleDateString() : 'Just Now'}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 self-end sm:self-center shrink-0">
+                    <button type="button" data-id="${item.id}" class="edit-trigger-btn text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-3 py-2 rounded-lg transition">Edit</button>
+                    <button type="button" data-id="${item.id}" class="delete-trigger-btn text-xs font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 px-3 py-2 rounded-lg transition">Delete</button>
+                </div>
+            </div>
+        `;
+        container.innerHTML += rowHtml;
+    });
+
+    attachManagementEventListeners();
+}
+
+// Handle Realtime Filter Inputs
+document.getElementById('admin-search-box').addEventListener('input', (e) => {
+    const keyword = e.target.value.toLowerCase().trim();
+    const filtered = activePostsCache.filter(p => p.title.toLowerCase().includes(keyword) || p.slug.toLowerCase().includes(keyword));
+    renderLedgerRows(filtered);
+});
+
+function attachManagementEventListeners() {
     document.querySelectorAll('.delete-trigger-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const targetId = btn.getAttribute('data-id');
-            if (confirm("Are you absolutely sure you want to permanently discard this document manual node?")) {
+            if (confirm("Permanently discard this document index module record row?")) {
                 try {
                     await deleteDoc(doc(db, "posts", targetId));
-                    alert("Document removed from cluster matrix successfully.");
+                    alert("Record deleted successfully.");
                     syncAdminLedgerList();
-                    // If we were editing this specific piece, clear edit contexts out
                     if(document.getElementById('post-edit-id').value === targetId) resetFormState();
-                } catch (err) {
-                    alert("Deletions rejected: " + err.message);
-                }
+                } catch (err) { alert("Deletion error: " + err.message); }
             }
         });
     });
 
-    // Edit pipeline preparation mapping routines
     document.querySelectorAll('.edit-trigger-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const targetId = btn.getAttribute('data-id');
+            const postData = activePostsCache.find(p => p.id === targetId);
             
-            // Extract core snapshot values cleanly matching identity references 
-            snapshot.forEach(docObj => {
-                if(docObj.id === targetId) {
-                    const postData = docObj.data();
-                    
-                    // Route values accurately back into the UI forms arrays
-                    document.getElementById('post-edit-id').value = targetId;
-                    document.getElementById('post-input-title').value = postData.title;
-                    document.getElementById('post-input-slug').value = postData.slug;
-                    document.getElementById('post-input-category').value = postData.category;
-                    
-                    // Inject database content safely inside Quill editor fields
-                    quillEditor.root.innerHTML = postData.content;
+            if(postData) {
+                document.getElementById('post-edit-id').value = targetId;
+                document.getElementById('post-input-title').value = postData.title;
+                document.getElementById('post-input-slug').value = postData.slug;
+                document.getElementById('post-input-category').value = postData.category;
+                quillEditor.root.innerHTML = postData.content;
 
-                    // Swap operational messaging displays smoothly
-                    document.getElementById('form-action-title').innerText = "Revise Active Schema Content";
-                    document.getElementById('submit-btn').innerText = "Save and Update Document Changes";
-                    document.getElementById('edit-image-status').classList.remove('hidden');
-                    document.getElementById('cancel-edit-btn').classList.remove('hidden');
-                    
-                    // Focus user screen focus up to viewport parameters nicely
-                    document.getElementById('post-input-title').scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+                document.getElementById('form-action-title').innerText = "Edit Blog Details";
+                document.getElementById('submit-btn').innerText = "Save and Update Blog Changes";
+                document.getElementById('edit-image-status').classList.remove('hidden');
+                document.getElementById('cancel-edit-btn').classList.remove('hidden');
+                document.getElementById('post-form').scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 }
 
-// Reset admin tracking metrics back to default baseline states
 function resetFormState() {
     document.getElementById('post-form').reset();
     document.getElementById('post-edit-id').value = "";
     quillEditor.root.innerHTML = "";
-    
-    document.getElementById('form-action-title').innerText = "Create New Publication";
+    document.getElementById('form-action-title').innerText = "Create New Blog";
     document.getElementById('submit-btn').innerText = "Commit Record to Database";
-    document.getElementById('edit-image-status').add('hidden');
+    document.getElementById('edit-image-status').classList.add('hidden');
     document.getElementById('cancel-edit-btn').classList.add('hidden');
 }
 
 document.getElementById('cancel-edit-btn').addEventListener('click', resetFormState);
 
-// Central form submission routing controller matrix
 document.getElementById('post-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const actionButton = document.getElementById('submit-btn');
@@ -199,54 +187,35 @@ document.getElementById('post-form').addEventListener('submit', async (e) => {
     const slug = document.getElementById('post-input-slug').value;
     const category = document.getElementById('post-input-category').value;
     const fileAsset = document.getElementById('post-input-image').files[0];
-    
-    // Extract formatted clean structural HTML directly from our Quill context fields
     const formattedContentHTML = quillEditor.root.innerHTML;
 
     let resolvedImageUrl = "";
 
     try {
-        // Process media uploads if file values are present inside input selectors
         if (fileAsset) {
             const fileRef = ref(storage, `blog_images/${Date.now()}_${fileAsset.name}`);
-            const uploadSnapshot = await uploadBytes(fileRef, fileAsset);
-            resolvedImageUrl = await getDownloadURL(uploadSnapshot.ref);
+            const snapshot = await uploadBytes(fileRef, fileAsset);
+            resolvedImageUrl = await getDownloadURL(snapshot.ref);
         }
 
         if (isEditingMode) {
-            // Compile updating object packets smoothly
             const documentReference = doc(db, "posts", editId);
-            const updatePayload = {
-                title,
-                slug,
-                category,
-                content: formattedContentHTML
-            };
-            
-            // Only update image path indices if user submitted a new asset
+            const updatePayload = { title, slug, category, content: formattedContentHTML };
             if (resolvedImageUrl !== "") updatePayload.imageUrl = resolvedImageUrl;
-            
             await updateDoc(documentReference, updatePayload);
-            alert("Active documentation directory successfully updated.");
+            alert("Blog updated successfully.");
         } else {
-            // Standard baseline execution for entirely fresh posts entries
             await addDoc(collection(db, "posts"), {
-                title,
-                slug,
-                category,
-                imageUrl: resolvedImageUrl,
-                content: formattedContentHTML,
-                createdAt: serverTimestamp()
+                title, slug, category, imageUrl: resolvedImageUrl, content: formattedContentHTML, createdAt: serverTimestamp()
             });
-            alert("Data Packet Successfully Committed!");
+            alert("Blog published successfully!");
         }
 
         resetFormState();
         syncAdminLedgerList();
-    } catch (err) {
-        alert("Transaction Failed: " + err.message);
-    } finally {
+    } catch (err) { alert("Transaction Failed: " + err.message); } 
+    finally {
         actionButton.disabled = false;
-        actionButton.innerText = isEditingMode ? "Save and Update Document Changes" : "Commit Record to Database";
+        actionButton.innerText = isEditingMode ? "Save and Update Blog Changes" : "Commit Record to Database";
     }
 });
