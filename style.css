@@ -1,52 +1,64 @@
-/* Custom Utility Layouts for AttestifyHub */
+/* Custom Fine-Grained Transitions and Animations */
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
 }
 
-/* Custom Typography spacing overrides for the Firebase post output injection */
+/* View Engine View Swapping Canvas Setup */
+.view-section {
+    display: none;
+    opacity: 0;
+    transform: scale(0.995) translateY(4px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.view-section.active-view {
+    display: block;
+}
+
+/* Article Copy Injection Document Formatting Rules */
+#post-content p {
+    margin-bottom: 1.5rem;
+    color: #334155; /* slate-700 */
+    line-height: 1.85;
+    font-weight: 500;
+}
+
 #post-content h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-size: 1.6rem;
+    font-weight: 900;
     color: #0f172a; /* slate-900 */
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: 1rem;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
 }
 
 #post-content h3 {
-    font-size: 1.35rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
     color: #1e293b; /* slate-800 */
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
     margin-bottom: 0.75rem;
 }
 
-#post-content p {
-    margin-bottom: 1.25rem;
-    color: #334155; /* slate-700 */
-    line-height: 1.8;
-}
-
 #post-content ul, #post-content ol {
-    margin-left: 1.5rem;
+    margin-left: 1.75rem;
     margin-bottom: 1.5rem;
-    list-style-type: disc;
+    list-style-type: square;
 }
 
 #post-content li {
     margin-bottom: 0.5rem;
+    color: #334155;
+    font-weight: 500;
 }
 
-/* Beautiful Smooth Fade-in Animations for view swapping */
-.view-section {
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.view-section.active {
-    opacity: 1;
-    transform: translateY(0);
+.animate-fade-in {
+    animation: fadeIn 0.25s forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
