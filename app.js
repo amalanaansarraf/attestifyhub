@@ -158,4 +158,29 @@ async function compileIndividualArticle(slug) {
     }
 }
 
+// ===================================================
+// ADDED ANIMATION ENGINE AND INTERCEPTOR BLOCKS HERE:
+// ===================================================
+function triggerScrollObserver() {
+    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target); // Animates once
+            }
+        });
+    }, observerOptions);
+
+    // Track heading titles and generated article cards
+    document.querySelectorAll('.animate-reveal').forEach(el => scrollObserver.observe(el));
+}
+
+// Intercept routing loops to apply trigger tracking arrays
+const primaryFetchRecords = fetchCollectionRecords;
+fetchCollectionRecords = async function(isFeaturedOnly) {
+    await primaryFetchRecords(isFeaturedOnly);
+    setTimeout(triggerScrollObserver, 300); // Wait briefly for Firestore to finish rendering elements
+};
+
 export { db };
