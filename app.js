@@ -149,7 +149,7 @@ async function compileIndividualArticle(slug) {
                 img.classList.add('hidden');
             }
             
-            body.innerHTML = data.content.replace(/\n/g, '<br>');
+            body.innerHTML = data.content;
             document.title = `${data.title} | AttestifyHub Guide`;
         });
     } catch (err) {
