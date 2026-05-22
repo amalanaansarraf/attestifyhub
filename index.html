@@ -3,204 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AttestifyHub | UAE Document Verification & Relocation Manuals</title>
-    <meta name="description" content="Independent resource tracking UAE document attestation frameworks, legalization pathways, and visa compliance standards.">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>AttestifyHub | Independent UAE Document Legalization Manuals</title>
+    <meta name="description" content="Access specialized structural verification paths, embassy attestation parameters, and corporate visa compliance matrices for moving to the UAE.">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
+        .glass-panel { background: rgba(15, 23, 42, 0.45); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-nav { background: rgba(2, 6, 23, 0.7); backdrop-filter: blur(20px); border-b: 1px solid rgba(255, 255, 255, 0.05); }
+        .glow-indigo { box-shadow: 0 0 40px -5px rgba(99, 102, 241, 0.15); }
+        .interactive-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .interactive-card:hover { transform: translateY(-6px); border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.1); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .rendered-content h2 { font-size: 1.75rem; font-weight: 800; color: #ffffff; margin-top: 2rem; margin-bottom: 1rem; }
+        .rendered-content h3 { font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .rendered-content p { color: #94a3b8; margin-bottom: 1.25rem; line-height: 1.8; text-align: justify; }
+        .rendered-content ul, .rendered-content ol { margin-left: 1.5rem; margin-bottom: 1.5rem; list-style-type: square; color: #94a3b8; }
+        .rendered-content li { margin-bottom: 0.5rem; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
+<body class="antialiased selection:bg-indigo-500/30 selection:text-indigo-300">
 
-    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-50 shadow-sm transition-all">
+    <div class="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 text-indigo-400 text-xs font-semibold py-2.5 px-4 text-center border-b border-indigo-500/20 tracking-wide relative z-[60]">
+        <span class="inline-flex items-center gap-2 animate-pulse">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            UAE MOFA Attestation Standards Active: Verify processing requirements for international documents.
+        </span>
+    </div>
+
+    <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#/" class="flex items-center space-x-3 group">
-                <div class="bg-indigo-600 text-white p-2.5 rounded-xl shadow-md group-hover:bg-indigo-700 transition duration-300">
-                    <i class="fa-solid fa-passport text-xl"></i>
+            <div class="flex items-center space-x-3.5 group cursor-pointer" onclick="showSection('home')">
+                <div class="bg-gradient-to-br from-indigo-500 to-blue-600 p-2.5 rounded-xl text-slate-950 shadow-lg shadow-indigo-500/20 transform group-hover:rotate-6 transition duration-300">
+                    <i class="fa-solid fa-passport text-lg text-white"></i>
                 </div>
-                <span class="text-2xl font-bold text-slate-900 tracking-tight">Attestify<span class="text-indigo-600">Hub</span></span>
-            </a>
-            <nav class="hidden md:flex space-x-8 font-semibold">
-                <a href="#/" class="text-slate-600 hover:text-indigo-600 transition">Home</a>
-                <a href="#/blog" class="text-slate-600 hover:text-indigo-600 transition">All Manuals</a>
-                <a href="#/admin" class="text-slate-400 hover:text-slate-900 transition flex items-center"><i class="fa-solid fa-lock-open text-xs mr-1.5"></i> Terminal</a>
-            </nav>
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-slate-600 text-2xl focus:outline-none"><i class="fa-solid fa-bars-staggered"></i></button>
+                <div>
+                    <span class="text-lg font-black tracking-tight text-white block group-hover:text-indigo-400 transition">Attestify<span class="text-indigo-400">Hub</span></span>
+                    <span class="text-[10px] font-extrabold text-indigo-400 uppercase tracking-widest block -mt-0.5">Verification Directory</span>
+                </div>
             </div>
-        </div>
-        <div id="mobile-menu" class="hidden border-b border-slate-200 bg-white px-6 py-4 space-y-4 shadow-xl md:hidden animate-fade-in">
-            <a href="#/" class="block font-semibold text-slate-700 hover:text-indigo-600">Home</a>
-            <a href="#/blog" class="block font-semibold text-slate-700 hover:text-indigo-600">All Manuals</a>
-            <a href="#/admin" class="block font-semibold text-slate-400 hover:text-slate-900">Admin Terminal</a>
+            
+            <nav class="flex items-center space-x-1 bg-slate-900/60 p-1.5 rounded-xl border border-white/5">
+                <button onclick="showSection('home')" id="nav-home" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-indigo-400 bg-indigo-500/10 transition duration-200 cursor-pointer">Home</button>
+                <button onclick="showSection('blog')" id="nav-blog" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition duration-200 cursor-pointer">Knowledge Base</button>
+            </nav>
         </div>
     </header>
 
-    <main class="flex-grow">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1 relative z-10">
         
-        <section id="home-view" class="view-section active-view bg-slate-900 overflow-hidden">
-            <div class="relative py-28 sm:py-36 px-4 text-center border-b border-slate-800/60 bg-slate-950">
-                <div class="absolute top-1/4 left-1/4 w-80 h-80 bg-indigo-600/15 rounded-full filter blur-[80px] animate-blob pointer-events-none"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full filter blur-[100px] animate-blob pointer-events-none"></div>
-                <div class="max-w-4xl mx-auto relative z-10 space-y-8">
-                    <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 rounded-full backdrop-blur-md">
-                        <span class="h-2 w-2 bg-indigo-400 rounded-full animate-ping"></span>
-                        <span class="text-xs font-bold tracking-widest text-indigo-300 uppercase">Independent Documentation Hub</span>
+        <section id="home-section" class="space-y-24 animate-fade-in">
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+            <div class="glass-panel rounded-3xl p-8 md:p-20 relative overflow-hidden glow-indigo border border-white/10 flex flex-col justify-between min-h-[460px]">
+                <div class="max-w-3xl space-y-6 relative z-10 my-auto">
+                    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-building-columns text-xs"></i> Independent Relocation Research Registry
                     </div>
-                    <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-none">
-                        Decoupling UAE Attestation <br class="hidden sm:inline" />
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-blue-400 to-emerald-400">Protocol Complexity</span>
+                    <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-[1.15] text-white">
+                        Structural Intelligence for <span class="bg-gradient-to-r from-indigo-400 via-blue-400 to-indigo-500 bg-clip-text text-transparent">UAE Legalization</span>
                     </h1>
-                    <p class="text-base sm:text-xl text-slate-400 max-w-2xl mx-auto font-medium">Unsponsored document processing architectures, embassy verifications, and visa clearance frameworks.</p>
-                    <div class="pt-4 flex justify-center">
-                        <a href="#/blog" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-1">Access Master Dossier</a>
+                    <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-2xl font-light">
+                        Deploy verified certificate processing strategies, interpret diplomatic verification paths, and minimize entry registration roadblocks across UAE ministry checkpoints.
+                    </p>
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button onclick="showSection('blog')" class="bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white font-extrabold px-7 py-4 rounded-xl shadow-lg shadow-indigo-500/20 transition transform hover:-translate-y-0.5 flex items-center gap-2 text-sm cursor-pointer">
+                            Access Compliance Repository <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="bg-slate-50 py-24 border-t border-slate-100">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-2xl sm:text-4xl font-black text-slate-950 tracking-tight mb-12">Recent Field Deep-Dives</h2>
-                    <div id="featured-grid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
+                <div class="absolute right-0 bottom-0 top-0 w-1/3 hidden lg:flex items-center justify-center text-slate-900/20 text-[22rem] font-bold select-none pointer-events-none">
+                    <i class="fa-solid fa-gavel"></i>
                 </div>
             </div>
-        </section>
 
-        <section id="blog-view" class="view-section">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <h1 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight mb-12">Systematic Directory Logs</h1>
-                <div id="blog-grid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
-            </div>
-        </section>
-
-        <section id="post-view" class="view-section max-w-3xl mx-auto px-4 py-16">
-            <article class="bg-white border border-slate-200/60 rounded-3xl p-6 sm:p-12 shadow-xl space-y-8">
-                <a href="#/blog" class="text-sm font-bold text-indigo-600 hover:text-indigo-700 inline-flex items-center"><i class="fa-solid fa-chevron-left mr-1.5"></i> Back to Index</a>
-                <div class="space-y-4">
-                    <div id="post-meta" class="text-xs font-bold tracking-widest text-indigo-600 uppercase"></div>
-                    <h1 id="post-title" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight"></h1>
+            <div class="grid md:grid-cols-3 gap-6 relative z-10">
+                <div class="glass-panel p-8 rounded-2xl interactive-card space-y-4">
+                    <div class="text-indigo-400 text-xl bg-indigo-500/10 w-12 h-12 rounded-xl flex items-center justify-center border border-indigo-500/20"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3 class="text-lg font-bold text-white tracking-tight">Educational Verification</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed font-light">Deep-dives tracking global degree processing structures, HRD apostille rules, and MOFA electronic card matching sequences.</p>
                 </div>
-                <img id="post-hero-image" class="w-full h-80 sm:h-96 object-cover rounded-2xl border hidden" alt="Featured Image">
-                <div id="post-content" class="text-slate-700 text-base sm:text-lg leading-relaxed space-y-6"></div>
-                
-                <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 shadow-xl">
+                <div class="glass-panel p-8 rounded-2xl interactive-card space-y-4">
+                    <div class="text-blue-400 text-xl bg-blue-500/10 w-12 h-12 rounded-xl flex items-center justify-center border border-blue-500/20"><i class="fa-solid fa-address-card"></i></div>
+                    <h3 class="text-lg font-bold text-white tracking-tight">Visa Clearance Audits</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed font-light">Operational paths designed to streamline family sponsorship protocols, validate medical profiles, and prepare entry dossiers.</p>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl interactive-card space-y-4">
+                    <div class="text-indigo-400 text-xl bg-indigo-500/10 w-12 h-12 rounded-xl flex items-center justify-center border border-indigo-500/20"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3 class="text-lg font-bold text-white tracking-tight">Corporate Formalities</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed font-light">Stay updated with mainland trade setups, freezone registration laws, and chamber commercial document stamping mandates.</p>
+                </div>
+            </div>
+
+            <div class="space-y-8 relative z-10">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
                     <div class="space-y-1">
-                        <h4 class="text-lg font-bold">Require Secure Professional Filing?</h4>
-                        <p class="text-slate-400 text-sm max-w-md">Route high-priority items directly into our credentialed attestation channel partner framework.</p>
+                        <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Recent Compliance Intelligence</h2>
+                        <p class="text-xs text-slate-500">Newly indexed architectural articles and development tutorials.</p>
                     </div>
-                    <a href="https://attestation.ae" target="_blank" rel="noopener noreferrer" class="bg-white text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition shadow-md whitespace-nowrap">Delegate Case Securely <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-xs"></i></a>
+                    <button onclick="showSection('blog')" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 transition cursor-pointer">View All Indices <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
-            </article>
+                <div id="featured-posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
         </section>
 
-        <section id="admin-view" class="view-section min-h-screen bg-slate-50">
-            <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
-            <div id="admin-auth" class="pt-20 px-4 max-w-md mx-auto">
-                <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-xl space-y-6">
-                    <h2 class="text-2xl font-black text-slate-950 text-center">Dashboard Access</h2>
-                    <form id="login-form" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Email</label>
-                            <input type="email" id="login-email" required class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-600">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Password</label>
-                            <input type="password" id="login-password" required class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-600">
-                        </div>
-                        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3.5 rounded-xl text-sm shadow-lg shadow-indigo-600/10">Unlock Dashboard</button>
-                    </form>
-                </div>
+        <section id="blog-section" class="hidden space-y-10 animate-fade-in">
+            <div class="max-w-2xl border-l-2 border-indigo-500 pl-4 space-y-1">
+                <h1 class="text-3xl font-black text-white tracking-tight">The Compliance Archive</h1>
+                <p class="text-sm text-slate-400 font-light">Searchable technical documentation, wave adjustments, and configuration logs.</p>
             </div>
+            <div id="all-posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
 
-            <div id="admin-dashboard" class="hidden flex min-h-screen animate-fade-in">
-                <aside class="w-64 bg-slate-950 text-slate-400 p-6 flex flex-col justify-between shrink-0 border-r border-slate-900 hidden md:flex">
-                    <div class="space-y-8">
-                        <div>
-                            <h2 class="text-xl font-black text-white tracking-tight">Attestify Admin</h2>
-                            <p class="text-slate-500 text-xs font-medium">CMS Dashboard</p>
-                        </div>
-                        <nav class="space-y-1">
-                            <a href="#/admin" class="flex items-center space-x-3 bg-slate-900 text-white px-4 py-3 rounded-xl font-bold text-sm"><i class="fa-solid fa-chart-pie text-indigo-500"></i> <span>Dashboard</span></a>
-                        </nav>
-                    </div>
-                    <button id="logout-btn" class="w-full flex items-center space-x-3 text-rose-400 border border-dashed border-rose-900/30 px-4 py-3 rounded-xl font-bold text-sm transition"><span>Lock Console</span></button>
-                </aside>
-
-                <div class="flex-grow p-6 sm:p-10 space-y-8 w-full">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b pb-6">
-                        <div>
-                            <h1 class="text-3xl font-black text-slate-950 tracking-tight">Dashboard</h1>
-                            <p class="text-slate-500 text-sm">Manage blogs and website content</p>
+        <section id="article-view-section" class="hidden animate-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <button onclick="showSection('blog')" class="mb-8 inline-flex items-center font-bold text-xs text-slate-400 hover:text-white transition bg-slate-900 border border-white/5 px-4 py-2.5 rounded-xl shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-chevron-left mr-2 text-[10px]"></i> Return to Feed
+                </button>
+                <article class="glass-panel rounded-3xl p-6 md:p-14 shadow-2xl relative">
+                    <div class="space-y-4 border-b border-slate-800 pb-8 mb-8">
+                        <span id="article-view-category" class="bg-indigo-500/10 text-indigo-400 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md border border-indigo-500/20 inline-block">Category</span>
+                        <h1 id="article-view-title" class="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">Article Headline Placeholder</h1>
+                        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-2 font-medium">
+                            <span id="article-view-date" class="flex items-center gap-1.5"><i class="fa-solid fa-calendar text-slate-600"></i> Date</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-slate-600"></i> Systems Analyst</span>
                         </div>
                     </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
-                        <div class="bg-white border p-6 rounded-2xl shadow-sm">
-                            <span class="text-xs font-bold text-slate-400 uppercase">Total Posts</span>
-                            <h3 id="metric-total-posts" class="text-4xl font-black text-slate-900">0</h3>
+                    <div id="article-view-content" class="rendered-content text-slate-300 text-base md:text-lg tracking-normal font-light"></div>
+                    
+                    <div class="mt-12 bg-gradient-to-r from-slate-950 to-indigo-950/80 border border-indigo-500/20 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="space-y-1 text-center md:text-left">
+                            <h4 class="text-base font-bold text-white">Require Secure Professional Filing Execution?</h4>
+                            <p class="text-slate-400 text-xs font-light max-w-md">Avoid processing rejections. Route high-priority items directly into our credentialed attestation channel partner framework.</p>
                         </div>
-                        <div class="bg-white border p-6 rounded-2xl shadow-sm">
-                            <span class="text-xs font-bold text-slate-400 uppercase">Database Link</span>
-                            <h3 class="text-4xl font-black text-emerald-600">Connected</h3>
-                        </div>
+                        <a href="https://attestation.ae" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-5 py-3.5 rounded-xl transition whitespace-nowrap tracking-wide shrink-0 shadow-md">Delegate Case Securely <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i></a>
                     </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                        <form id="post-form" class="lg:col-span-5 bg-white border p-6 rounded-2xl shadow-sm space-y-5">
-                            <input type="hidden" id="post-edit-id" value="">
-                            <h2 id="form-action-title" class="text-lg font-black text-slate-900 border-b pb-3">Create New Blog</h2>
-
-                            <div class="space-y-1">
-                                <label class="block text-xs font-bold text-slate-700">Blog Title</label>
-                                <input type="text" id="post-input-title" required placeholder="Enter blog title" class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-600 bg-slate-50/50">
-                            </div>
-                            <div class="space-y-1">
-                                <label class="block text-xs font-bold text-slate-700">Custom URL Slug</label>
-                                <input type="text" id="post-input-slug" required placeholder="e.g., custom-seo-slug" class="w-full border rounded-xl px-4 py-3 text-xs font-mono text-indigo-600 focus:outline-none focus:border-indigo-600 bg-slate-50/50">
-                            </div>
-                            <div class="space-y-1">
-                                <label class="block text-xs font-bold text-slate-700">Category</label>
-                                <select id="post-input-category" class="w-full border rounded-xl px-4 py-3 text-xs font-bold text-slate-700 focus:outline-none focus:border-indigo-600 bg-white">
-                                    <option value="Attestation Blueprints">Attestation Blueprints</option>
-                                    <option value="Visa Compliance">Visa Compliance</option>
-                                    <option value="Corporate Operations">Corporate Operations</option>
-                                </select>
-                            </div>
-                            <div class="space-y-1">
-                                <label class="block text-xs font-bold text-slate-700">Upload Featured Image</label>
-                                <input type="file" id="post-input-image" accept="image/*" class="w-full border rounded-xl p-2 text-xs text-slate-400">
-                            </div>
-                            <div class="space-y-1">
-                                <label class="block text-xs font-bold text-slate-700 mb-1">Blog Content</label>
-                                <div id="editor-container" class="h-64 rounded-b-xl bg-white"></div>
-                            </div>
-                            <button type="submit" id="submit-btn" class="w-full bg-indigo-600 text-white font-bold py-3.5 rounded-xl text-sm shadow-md">Commit Record to Database</button>
-                            <button type="button" id="cancel-edit-btn" class="hidden w-full bg-slate-100 text-slate-700 font-bold py-2 rounded-xl text-xs mt-2">Cancel Edit</button>
-                        </form>
-
-                        <div class="lg:col-span-7 bg-white border p-6 rounded-2xl shadow-sm space-y-4">
-                            <h2 class="text-lg font-black text-slate-900 border-b pb-4">Published Blogs</h2>
-                            <div id="admin-posts-ledger" class="space-y-4 max-h-[600px] overflow-y-auto"></div>
-                        </div>
-                    </div>
-                </div>
+                </article>
             </div>
-            <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         </section>
     </main>
 
-    <footer class="bg-slate-950 text-slate-500 py-12 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-xs font-bold text-slate-400">&copy; 2026 AttestifyHub Portal. Independent Public Legal Documentation Record.</p>
+    <footer class="bg-slate-950 text-slate-500 mt-32 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-medium tracking-wide">
+            <p>&copy; 2026 AttestifyHub Portal. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"
+            }
+        }
+    </script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, getDocs, orderBy, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
+        import { initializeApp } from "firebase/app";
+        import { getFirestore, collection, getDocs, orderBy, query } from "firebase/firestore";
 
-        // Firebase Configuration Data Object Linked Automatically
+        // Your specific AttestifyHub Firebase account link parameters
         const firebaseConfig = {
             apiKey: "AIzaSyBC-9dYZspjbkH9-XcVx7jzyI8APPotR_I",
             authDomain: "attestifyhub.firebaseapp.com",
@@ -213,257 +176,123 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
-        const storage = getStorage(app);
 
-        let quillEditor;
-        let activeCache = [];
-
-        // Simple Mobile Dropdown Handler
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
-        // Dynamic Router
-        window.addEventListener('hashchange', routerPipeline);
-        window.addEventListener('load', routerPipeline);
-
-        function routerPipeline() {
-            const hash = window.location.hash || '#/';
-            document.querySelectorAll('.view-section').forEach(sec => {
-                sec.classList.remove('active-view');
-                sec.style.opacity = '0';
-            });
-            document.getElementById('mobile-menu').classList.add('hidden');
-
-            setTimeout(() => {
-                if (hash === '#/' || hash === '') {
-                    renderView('home-view');
-                    fetchCollectionRecords(true);
-                } else if (hash === '#/blog') {
-                    renderView('blog-view');
-                    fetchCollectionRecords(false);
-                } else if (hash.startsWith('#/post/')) {
-                    renderView('post-view');
-                    compileIndividualArticle(hash.replace('#/post/', ''));
-                } else if (hash === '#/admin') {
-                    renderView('admin-view');
-                }
-            }, 200);
-        }
-
-        function renderView(viewId) {
-            const target = document.getElementById(viewId);
-            target.classList.add('active-view');
-            setTimeout(() => { target.style.opacity = '1'; }, 50);
-        }
-
-        // Fetch User Blog Feeds
-        async function fetchCollectionRecords(isFeaturedOnly = false) {
-            const gridId = isFeaturedOnly ? 'featured-grid' : 'blog-grid';
-            const el = document.getElementById(gridId);
-            if (!el) return;
-            el.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400"><i class="fa-solid fa-spinner animate-spin text-2xl"></i></div>';
-
+        async function fetchAndRenderFeeds() {
             try {
-                const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-                const snapshot = await getDocs(q);
-                el.innerHTML = "";
+                const blogCollectionRef = collection(db, "posts");
+                // Uses your field 'createdAt' timestamp ordering parameters cleanly
+                const q = query(blogCollectionRef, orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                const posts = [];
+                querySnapshot.forEach((doc) => { 
+                    const itemData = doc.data();
+                    posts.push({ id: doc.id, ...itemData }); 
+                });
 
-                if (snapshot.empty) {
-                    el.innerHTML = `<p class="col-span-full text-center py-12 text-slate-400">No blog logs published yet.</p>`;
+                const featuredGrid = document.getElementById('featured-posts-grid');
+                const allGrid = document.getElementById('all-posts-grid');
+                featuredGrid.innerHTML = ''; allGrid.innerHTML = '';
+
+                if (posts.length === 0) {
+                    const emptyState = `<div class="col-span-full text-center py-12 text-slate-500 text-sm"><i class="fa-solid fa-box-open text-2xl mb-2 block"></i> No operational compliance articles found.</div>`;
+                    featuredGrid.innerHTML = emptyState; allGrid.innerHTML = emptyState;
                     return;
                 }
 
-                let limit = 0;
-                snapshot.forEach((doc) => {
-                    if (isFeaturedOnly && limit >= 3) return;
-                    el.innerHTML += buildCardTemplate(doc.data());
-                    limit++;
-                });
-            } catch (err) { console.error(err); }
+                posts.forEach(post => { allGrid.innerHTML += createCardHtml(post); });
+                posts.slice(0, 3).forEach(post => { featuredGrid.innerHTML += createCardHtml(post); });
+                window.cachedBlogPosts = posts;
+                
+                checkIncomingPathSlugRoute();
+
+            } catch (error) {
+                console.error("Firebase Database Stream Exception: ", error);
+            }
         }
 
-        function buildCardTemplate(post) {
-            const fallback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%23f1f5f9'/></svg>";
+        function createCardHtml(post) {
+            const activeSlug = post.slug || post.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+            const formattedDate = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Active Guide';
+            
             return `
-                <article class="animate-reveal bg-white border border-slate-200/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col group">
-                    <div class="h-56 w-full bg-slate-900 relative overflow-hidden shrink-0">
-                        <img src="${post.imageUrl || fallback}" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ease-out" loading="lazy">
-                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest">${post.category || 'Compliance'}</span>
+                <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between interactive-card">
+                    <div class="space-y-3.5">
+                        <span class="bg-indigo-500/10 text-indigo-400 text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-md border border-indigo-500/15 inline-block">${post.category || 'Compliance'}</span>
+                        <h3 class="text-lg font-bold text-white tracking-tight hover:text-indigo-400 cursor-pointer transition line-clamp-2" onclick="viewArticleBySlug('${activeSlug}')">${post.title}</h3>
+                        <p class="text-slate-400 text-xs font-light leading-relaxed line-clamp-3">${post.content.replace(/<[^>]*>/g, '').substring(0, 120)}...</p>
                     </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-5">
-                        <div class="space-y-3">
-                            <h3 class="text-xl font-bold text-slate-950 tracking-tight line-clamp-2 group-hover:text-indigo-600 transition duration-300"><a href="#/post/${post.slug}">${post.title}</a></h3>
-                            <p class="text-slate-500 text-sm line-clamp-3">${post.content.replace(/<[^>]*>/g, '').substring(0, 120)}...</p>
-                        </div>
-                        <div class="pt-4 border-t flex items-center justify-between text-xs font-bold">
-                            <span class="text-slate-400"><i class="fa-regular fa-clock text-indigo-500 mr-2"></i>${post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now'}</span>
-                            <a href="#/post/${post.slug}" class="text-indigo-600">Analyze Manual <i class="fa-solid fa-chevron-right text-[9px]"></i></a>
-                        </div>
+                    <div class="pt-5 mt-5 border-t border-white/5 flex items-center justify-between text-[11px] font-medium text-slate-500">
+                        <span><i class="fa-solid fa-calendar-days mr-1 text-slate-600"></i> ${formattedDate}</span>
+                        <button onclick="viewArticleBySlug('${activeSlug}')" class="text-indigo-400 font-bold hover:text-indigo-300 flex items-center gap-1 transition cursor-pointer">Analyze Guide <i class="fa-solid fa-chevron-right text-[9px]"></i></button>
                     </div>
-                </article>
-            `;
+                </div>`;
         }
 
-        async function compileIndividualArticle(slug) {
-            const title = document.getElementById('post-title');
-            const meta = document.getElementById('post-meta');
-            const img = document.getElementById('post-hero-image');
-            const body = document.getElementById('post-content');
-            body.innerHTML = '<div class="text-center py-12"><i class="fa-solid fa-spinner animate-spin text-2xl text-indigo-600"></i></div>';
+        window.viewArticleBySlug = function(targetSlug) {
+            const target = window.cachedBlogPosts.find(p => {
+                const computed = p.slug || p.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+                return computed === targetSlug;
+            });
 
-            try {
-                const q = query(collection(db, "posts"), where("slug", "==", slug));
-                const snapshot = await getDocs(q);
+            if(target) {
+                const formattedDate = target.createdAt ? new Date(target.createdAt.seconds * 1000).toLocaleDateString() : 'Active Guide';
+                document.getElementById('article-view-title').innerText = target.title;
+                document.getElementById('article-view-category').innerText = target.category || 'Compliance';
+                document.getElementById('article-view-date').innerHTML = `<i class="fa-solid fa-calendar mr-1.5 text-slate-600"></i> ${formattedDate}`;
+                document.getElementById('article-view-content').innerHTML = target.content;
+                
+                showSection('article-view');
+                document.title = `${target.title} | AttestifyHub Directory`;
 
-                if (snapshot.empty) {
-                    title.innerText = "Directory Record Missing";
-                    body.innerHTML = "<p class='text-rose-600'>Article could not be resolved from cloud metrics keys.</p>";
-                    img.classList.add('hidden');
-                    return;
-                }
+                // URL Rewrite Execution System Engine
+                const cleanSlugPath = window.location.pathname.replace('index.html', '') + targetSlug;
+                window.history.pushState({ articleSlug: targetSlug }, document.title, cleanSlugPath);
+            }
+        };
 
-                snapshot.forEach((doc) => {
-                    const data = doc.data();
-                    title.innerText = data.title;
-                    meta.innerText = `${data.category} // Issued ${data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'Just now'}`;
-                    if (data.imageUrl) { img.src = data.imageUrl; img.classList.remove('hidden'); } else { img.classList.add('hidden'); }
-                    body.innerHTML = data.content;
+        window.showSection = function(sectionId) {
+            document.getElementById('home-section').classList.add('hidden');
+            document.getElementById('blog-section').classList.add('hidden');
+            document.getElementById('article-view-section').classList.add('hidden');
+            document.getElementById(`${sectionId}-section`).classList.remove('hidden');
+            
+            const homeBtn = document.getElementById('nav-home');
+            const blogBtn = document.getElementById('nav-blog');
+            
+            if(sectionId === 'home') {
+                homeBtn.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-indigo-400 bg-indigo-500/10 transition duration-200 cursor-pointer";
+                blogBtn.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition duration-200 cursor-pointer";
+                window.history.pushState({}, "AttestifyHub Manuals", window.location.pathname.split('/').slice(0, -1).join('/') + '/');
+                document.title = "AttestifyHub | Independent UAE Document Legalization Manuals";
+            } else if(sectionId === 'blog') {
+                blogBtn.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-indigo-400 bg-indigo-500/10 transition duration-200 cursor-pointer";
+                homeBtn.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition duration-200 cursor-pointer";
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+
+        function checkIncomingPathSlugRoute() {
+            const structuralPathSegment = window.location.pathname.split('/').filter(Boolean).pop();
+            if(structuralPathSegment && structuralPathSegment !== 'index.html' && structuralPathSegment !== 'blog.html') {
+                const verifiedObjectiveMatch = window.cachedBlogPosts.some(p => {
+                    const comp = p.slug || p.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+                    return comp === structuralPathSegment;
                 });
-            } catch (err) { console.error(err); }
+                if(verifiedObjectiveMatch) {
+                    window.viewArticleBySlug(structuralPathSegment);
+                }
+            }
         }
 
-        // =====================================
-        // BACKEND CONTROL BOARD TERMINAL LOGIC
-        // =====================================
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.getElementById('admin-auth').classList.add('hidden');
-                document.getElementById('admin-dashboard').classList.remove('hidden');
-                if (!quillEditor) {
-                    quillEditor = new Quill('#editor-container', { theme: 'snow', modules: { toolbar: [[{ 'header': [2, 3, false] }], ['bold', 'italic', 'underline'], [{ 'align': [] }], [{ 'list': 'ordered'}, { 'list': 'bullet' }], ['link', 'clean']] } });
-                }
-                syncAdminLedgerList();
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.articleSlug) {
+                window.viewArticleBySlug(event.state.articleSlug);
             } else {
-                document.getElementById('admin-auth').classList.remove('hidden');
-                document.getElementById('admin-dashboard').classList.add('hidden');
+                showSection('home');
             }
         });
 
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            try { await signInWithEmailAndPassword(auth, document.getElementById('login-email').value, document.getElementById('login-password').value); } catch (err) { alert(err.message); }
-        });
-
-        document.getElementById('logout-btn').addEventListener('click', () => { signOut(auth); });
-
-        document.getElementById('post-input-title').addEventListener('input', (e) => {
-            if (document.getElementById('post-edit-id').value !== "") return;
-            document.getElementById('post-input-slug').value = e.target.value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
-        });
-
-        async function syncAdminLedgerList() {
-            const container = document.getElementById('admin-posts-ledger');
-            container.innerHTML = '<p class="text-center text-xs font-semibold text-slate-400">Syncing database matrix items...</p>';
-            try {
-                const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-                const snapshot = await getDocs(q);
-                container.innerHTML = "";
-                activeCache = [];
-                
-                snapshot.forEach(d => activeCache.push({ id: d.id, ...d.data() }));
-                document.getElementById('metric-total-posts').innerText = activeCache.length;
-
-                if (activeCache.length === 0) { container.innerHTML = '<p class="text-center text-xs font-bold text-slate-400">No active posts located.</p>'; return; }
-
-                activeCache.forEach(item => {
-                    container.innerHTML += `
-                        <div class="p-4 border rounded-xl bg-slate-50 flex items-center justify-between gap-4">
-                            <div>
-                                <h4 class="text-sm font-bold text-slate-900">${item.title}</h4>
-                                <p class="text-xs font-mono text-indigo-600">slug: ${item.slug}</p>
-                            </div>
-                            <div class="flex gap-2">
-                                <button type="button" data-id="${item.id}" class="edit-btn text-xs font-bold bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg">Edit</button>
-                                <button type="button" data-id="${item.id}" class="delete-btn text-xs font-bold bg-rose-50 text-rose-600 px-3 py-1.5 rounded-lg">Delete</button>
-                            </div>
-                        </div>`;
-                });
-
-                document.querySelectorAll('.delete-btn').forEach(b => b.addEventListener('click', async () => {
-                    if (confirm("Permanently discard this entry record row?")) {
-                        await deleteDoc(doc(db, "posts", b.getAttribute('data-id')));
-                        syncAdminLedgerList();
-                    }
-                }));
-
-                document.querySelectorAll('.edit-btn').forEach(b => b.addEventListener('click', () => {
-                    const matched = activeCache.find(p => p.id === b.getAttribute('data-id'));
-                    document.getElementById('post-edit-id').value = matched.id;
-                    document.getElementById('post-input-title').value = matched.title;
-                    document.getElementById('post-input-slug').value = matched.slug;
-                    document.getElementById('post-input-category').value = matched.category;
-                    quillEditor.root.innerHTML = matched.content;
-                    document.getElementById('form-action-title').innerText = "Edit Active Blog Post Details";
-                    document.getElementById('cancel-edit-btn').classList.remove('hidden');
-                }));
-
-            } catch (err) { console.error(err); }
-        }
-
-        document.getElementById('cancel-edit-btn').addEventListener('click', () => {
-            document.getElementById('post-form').reset();
-            document.getElementById('post-edit-id').value = "";
-            quillEditor.root.innerHTML = "";
-            document.getElementById('cancel-edit-btn').classList.add('hidden');
-            document.getElementById('form-action-title').innerText = "Create New Blog";
-        });
-
-        document.getElementById('post-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            const editId = document.getElementById('post-edit-id').value;
-            btn.disabled = true; btn.innerText = "Transmitting secure metadata fields...";
-
-            const file = document.getElementById('post-input-image').files[0];
-            let urlStr = "";
-
-            try {
-                if (file) {
-                    const snap = await uploadBytes(ref(storage, `blog_images/${Date.now()}_${file.name}`), file);
-                    urlStr = await getDownloadURL(snap.ref);
-                }
-
-                const payload = {
-                    title: document.getElementById('post-input-title').value,
-                    slug: document.getElementById('post-input-slug').value,
-                    category: document.getElementById('post-input-category').value,
-                    content: quillEditor.root.innerHTML
-                };
-                if (urlStr !== "") payload.imageUrl = urlStr;
-
-                if (editId !== "") {
-                    await updateDoc(doc(db, "posts", editId), payload);
-                } else {
-                    payload.createdAt = serverTimestamp();
-                    await addDoc(collection(db, "posts"), payload);
-                }
-
-                alert("Operation successful!");
-                document.getElementById('cancel-edit-btn').click();
-                syncAdminLedgerList();
-            } catch (err) { alert(err.message); } finally { btn.disabled = false; btn.innerText = "Commit Record to Database"; }
-        });
-
-        // Intersection Observer for scroll animations
-        function triggerScrollObserver() {
-            const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); } });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.animate-reveal').forEach(el => obs.observe(el));
-        }
-        setInterval(triggerScrollObserver, 1000); // Dynamic checks for new elements rows
+        fetchAndRenderFeeds();
     </script>
 </body>
 </html>
