@@ -1,0 +1,52 @@
+/* Custom Utility Layouts for AttestifyHub */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+}
+
+/* Custom Typography spacing overrides for the Firebase post output injection */
+#post-content h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a; /* slate-900 */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+}
+
+#post-content h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1e293b; /* slate-800 */
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+#post-content p {
+    margin-bottom: 1.25rem;
+    color: #334155; /* slate-700 */
+    line-height: 1.8;
+}
+
+#post-content ul, #post-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    list-style-type: disc;
+}
+
+#post-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Beautiful Smooth Fade-in Animations for view swapping */
+.view-section {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+.view-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
