@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="Uck58BnkdImPx6b42OiILacmZvsNDajZLlzYwy-S8Mw" />
     <title>AttestifyHub | Independent UAE Document Legalization Manuals</title>
     <meta name="description" content="Access specialized structural verification paths, embassy attestation parameters, and corporate visa compliance matrices for moving to the UAE.">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -37,7 +37,7 @@
 
     <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3.5 group cursor-pointer" onclick="showSection('home')">
+            <div class="flex items-center space-x-3.5 group cursor-pointer" onclick="window.showSection('home')">
                 <div class="bg-gradient-to-br from-indigo-500 to-blue-600 p-2.5 rounded-xl text-slate-950 shadow-lg shadow-indigo-500/20 transform group-hover:rotate-6 transition duration-300">
                     <i class="fa-solid fa-passport text-lg text-white"></i>
                 </div>
@@ -48,14 +48,15 @@
             </div>
             
             <nav class="flex items-center space-x-1 bg-slate-900/60 p-1.5 rounded-xl border border-white/5">
-                <button onclick="showSection('home')" id="nav-home" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-indigo-400 bg-indigo-500/10 transition duration-200 cursor-pointer">Home</button>
-                <button onclick="showSection('blog')" id="nav-blog" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition duration-200 cursor-pointer">Knowledge Base</button>
+                <button onclick="window.showSection('home')" id="nav-home" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-indigo-400 bg-indigo-500/10 transition duration-200 cursor-pointer">Home</button>
+                <button onclick="window.showSection('blog')" id="nav-blog" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition duration-200 cursor-pointer">Knowledge Base</button>
             </nav>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1 relative z-10">
         
+        <!-- Home Section -->
         <section id="home-section" class="space-y-24 animate-fade-in">
             <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
@@ -71,7 +72,7 @@
                         Deploy verified certificate processing strategies, interpret diplomatic verification paths, and minimize entry registration roadblocks across UAE ministry checkpoints.
                     </p>
                     <div class="pt-4 flex flex-wrap gap-4">
-                        <button onclick="showSection('blog')" class="bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white font-extrabold px-7 py-4 rounded-xl shadow-lg shadow-indigo-500/20 transition transform hover:-translate-y-0.5 flex items-center gap-2 text-sm cursor-pointer">
+                        <button onclick="window.showSection('blog')" class="bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white font-extrabold px-7 py-4 rounded-xl shadow-lg shadow-indigo-500/20 transition transform hover:-translate-y-0.5 flex items-center gap-2 text-sm cursor-pointer">
                             Access Compliance Repository <i class="fa-solid fa-arrow-right text-xs"></i>
                         </button>
                     </div>
@@ -105,12 +106,19 @@
                         <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Recent Compliance Intelligence</h2>
                         <p class="text-xs text-slate-500">Newly indexed architectural articles and development tutorials.</p>
                     </div>
-                    <button onclick="showSection('blog')" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 transition cursor-pointer">View All Indices <i class="fa-solid fa-arrow-right"></i></button>
+                    <button onclick="window.showSection('blog')" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 transition cursor-pointer">View All Indices <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
-                <div id="featured-posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <!-- FIXED CONTAINER MATCHING TARGET ATTRIBUTE HOOK -->
+                <div id="featured-posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="col-span-full text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-circle-notch animate-spin text-2xl text-indigo-500 block mx-auto mb-2"></i> 
+                        Loading verification updates...
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Knowledge Base Section -->
         <section id="blog-section" class="hidden space-y-10 animate-fade-in">
             <div class="max-w-2xl border-l-2 border-indigo-500 pl-4 space-y-1">
                 <h1 class="text-3xl font-black text-white tracking-tight">The Compliance Archive</h1>
@@ -119,15 +127,16 @@
             <div id="all-posts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
+        <!-- Full Dynamic Article View Section -->
         <section id="article-view-section" class="hidden animate-fade-in">
             <div class="max-w-4xl mx-auto">
-                <button onclick="showSection('blog')" class="mb-8 inline-flex items-center font-bold text-xs text-slate-400 hover:text-white transition bg-slate-900 border border-white/5 px-4 py-2.5 rounded-xl shadow-sm cursor-pointer">
+                <button onclick="window.showSection('blog')" class="mb-8 inline-flex items-center font-bold text-xs text-slate-400 hover:text-white transition bg-slate-900 border border-white/5 px-4 py-2.5 rounded-xl shadow-sm cursor-pointer">
                     <i class="fa-solid fa-chevron-left mr-2 text-[10px]"></i> Return to Feed
                 </button>
                 <article class="glass-panel rounded-3xl p-6 md:p-14 shadow-2xl relative">
                     <div class="space-y-4 border-b border-slate-800 pb-8 mb-8">
                         <span id="article-view-category" class="bg-indigo-500/10 text-indigo-400 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md border border-indigo-500/20 inline-block">Category</span>
-                        <h1 id="article-view-title" class="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">Article Headline Placeholder</h1>
+                        <h1 id="article-view-title" class="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">Article Headline</h1>
                         <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-2 font-medium">
                             <span id="article-view-date" class="flex items-center gap-1.5"><i class="fa-solid fa-calendar text-slate-600"></i> Date</span>
                             <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-slate-600"></i> Systems Analyst</span>
@@ -153,90 +162,135 @@
         </div>
     </footer>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "firebase/app": "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js",
-                "firebase/firestore": "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"
-            }
-        }
-    </script>
     <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, orderBy, query, limit } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, orderBy, query, limit } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // Linked directly to your AttestifyHub production node configuration instance
-    const firebaseConfig = {
-        apiKey: "AIzaSyBC-9dYZspjbkH9-XcVx7jzyI8APPotR_I",
-        authDomain: "attestifyhub.firebaseapp.com",
-        projectId: "attestifyhub",
-        storageBucket: "attestifyhub.firebasestorage.app",
-        messagingSenderId: "140396215714",
-        appId: "1:140396215714:web:c44d4377202bfabd4286fb",
-        measurementId: "G-GRN4DPJ4Z8"
-    };
+        const firebaseConfig = {
+            apiKey: "AIzaSyBC-9dYZspjbkH9-XcVx7jzyI8APPotR_I",
+            authDomain: "attestifyhub.firebaseapp.com",
+            projectId: "attestifyhub",
+            storageBucket: "attestifyhub.firebasestorage.app",
+            messagingSenderId: "140396215714",
+            appId: "1:140396215714:web:c44d4377202bfabd4286fb",
+            measurementId: "G-GRN4DPJ4Z8"
+        };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        let cachedPosts = [];
 
-    async function loadRecentHomePosts() {
-        try {
-            // Queries the latest 3 active documents mapped inside the collection cluster
-            const q = query(collection(db, "posts"), orderBy("id", "desc"), limit(3));
-            const querySnapshot = await getDocs(q);
-            const grid = document.getElementById('home-posts-grid');
-            grid.innerHTML = '';
+        // Global Navigation Architecture Context Layout Routing Controller 
+        window.showSection = function(section) {
+            document.getElementById('home-section').classList.add('hidden');
+            document.getElementById('blog-section').classList.add('hidden');
+            document.getElementById('article-view-section').classList.add('hidden');
+            
+            document.getElementById('nav-home').className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition duration-200 cursor-pointer";
+            document.getElementById('nav-blog').className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition duration-200 cursor-pointer";
 
-            if(querySnapshot.empty) {
-                grid.innerHTML = `
-                    <div class="col-span-full text-center text-slate-500 text-xs py-8">
-                        <i class="fa-solid fa-box-open text-xl mb-1.5 block"></i> No operational manuals published yet.
-                    </div>`;
-                return;
+            if (section === 'home') {
+                document.getElementById('home-section').classList.remove('hidden');
+                document.getElementById('nav-home').className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-indigo-400 bg-indigo-500/10 transition duration-200 cursor-pointer";
+            } else if (section === 'blog') {
+                document.getElementById('blog-section').classList.remove('hidden');
+                document.getElementById('nav-blog').className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-indigo-400 bg-indigo-500/10 transition duration-200 cursor-pointer";
+            } else if (section === 'article') {
+                document.getElementById('article-view-section').classList.remove('hidden');
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
 
-            querySnapshot.forEach((doc) => {
-                const post = doc.data();
+        window.viewArticleInline = function(postId) {
+            const post = cachedPosts.find(p => String(p.id) === String(postId));
+            if (!post) return;
+
+            document.getElementById('article-view-title').innerText = post.title;
+            document.getElementById('article-view-category').innerText = post.category || 'Compliance';
+            document.getElementById('article-view-date').innerHTML = `<i class="fa-solid fa-calendar text-slate-600"></i> ${post.date || ''}`;
+            document.getElementById('article-view-content').innerHTML = post.content || '';
+            
+            window.showSection('article');
+        };
+
+        async function fetchWorkspaceDatabaseNodes() {
+            try {
+                const q = query(collection(db, "posts"), orderBy("id", "desc"));
+                const querySnapshot = await getDocs(q);
                 
-                // Calculates the clean slug route strings
-                const targetSlug = post.slug || post.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
-                const defaultFallbackImage = 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80';
-                const cardImageCover = post.image || defaultFallbackImage;
+                const homeGrid = document.getElementById('featured-posts-grid');
+                const archiveGrid = document.getElementById('all-posts-grid');
+                
+                homeGrid.innerHTML = '';
+                archiveGrid.innerHTML = '';
+                cachedPosts = [];
 
-                // Generates card structure matching the premium dark aesthetic workspace
-                grid.innerHTML += `
-                    <article class="bg-[#0b1329]/40 rounded-[24px] overflow-hidden border border-white/[0.04] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/20 group">
-                        <div class="relative h-40 w-full overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10"></div>
-                            <img src="${cardImageCover}" alt="${post.title}" class="w-full h-full object-cover transition duration-500 group-hover:scale-102" loading="lazy" />
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <span class="bg-indigo-500/10 text-indigo-400 text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-md border border-indigo-500/15">${post.category || 'Compliance'}</span>
-                                    <span class="text-slate-500 text-[10px] font-mono">${post.date || ''}</span>
-                                </div>
-                                <a href="post.html?article=${targetSlug}" class="block">
-                                    <h3 class="text-sm font-bold text-white tracking-tight group-hover:text-indigo-400 transition line-clamp-2">${post.title}</h3>
-                                </a>
-                                <p class="text-slate-400 text-xs font-light line-clamp-2">${post.summary || ''}</p>
-                            </div>
-                            <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
-                                <span class="text-slate-500 font-mono text-[10px]">ID: ${String(post.id).slice(-4)}</span>
-                                <a href="post.html?article=${targetSlug}" class="text-indigo-400 font-bold hover:text-indigo-300 flex items-center gap-1 transition-all">Read Manual <i class="fa-solid fa-arrow-right text-[9px]"></i></a>
-                            </div>
-                        </div>
-                    </article>`;
-            });
-        } catch (err) {
-            console.error("Home View Synchronization Fault:", err);
-            document.getElementById('home-posts-grid').innerHTML = `
-                <div class="col-span-full text-center text-red-400/60 text-xs py-8">
-                    <i class="fa-solid fa-triangle-exclamation mr-1"></i> Synchronization with core node clusters interrupted.
-                </div>`;
+                if (querySnapshot.empty) {
+                    const emptyState = `
+                        <div class="col-span-full text-center text-slate-500 text-xs py-8">
+                            <i class="fa-solid fa-box-open text-xl mb-1.5 block"></i> No operational manuals published yet.
+                        </div>`;
+                    homeGrid.innerHTML = emptyState;
+                    archiveGrid.innerHTML = emptyState;
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    cachedPosts.push(doc.data());
+                });
+
+                // Render Home Grid (Latest 3 items)
+                const homeItems = cachedPosts.slice(0, 3);
+                homeItems.forEach((post) => {
+                    homeGrid.innerHTML += generateCardHTML(post);
+                });
+
+                // Render Full Knowledge Base Archive Grid
+                cachedPosts.forEach((post) => {
+                    archiveGrid.innerHTML += generateCardHTML(post);
+                });
+
+            } catch (err) {
+                console.error("Home View Synchronization Fault:", err);
+                const errorState = `
+                    <div class="col-span-full text-center text-red-400/60 text-xs py-8">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Synchronization with core node clusters interrupted.
+                    </div>`;
+                document.getElementById('featured-posts-grid').innerHTML = errorState;
+                document.getElementById('all-posts-grid').innerHTML = errorState;
+            }
         }
-    }
 
-    window.addEventListener('DOMContentLoaded', loadRecentHomePosts);
-</script></body>
+        function generateCardHTML(post) {
+            const defaultFallbackImage = 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80';
+            const cardImageCover = post.image || defaultFallbackImage;
+
+            return `
+                <article class="bg-[#0b1329]/40 rounded-[24px] overflow-hidden border border-white/[0.04] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/20 group">
+                    <div class="relative h-40 w-full overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10"></div>
+                        <img src="${cardImageCover}" alt="${post.title}" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="bg-indigo-500/10 text-indigo-400 text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-md border border-indigo-500/15">${post.category || 'Compliance'}</span>
+                                <span class="text-slate-500 text-[10px] font-mono">${post.date || ''}</span>
+                            </div>
+                            <button onclick="window.viewArticleInline('${post.id}')" class="block text-left w-full cursor-pointer group">
+                                <h3 class="text-sm font-bold text-white tracking-tight group-hover:text-indigo-400 transition line-clamp-2">${post.title}</h3>
+                            </button>
+                            <p class="text-slate-400 text-xs font-light line-clamp-2">${post.summary || ''}</p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-slate-500 font-mono text-[10px]">ID: ${String(post.id).slice(-4)}</span>
+                            <button onclick="window.viewArticleInline('${post.id}')" class="text-indigo-400 font-bold hover:text-indigo-300 flex items-center gap-1 transition-all cursor-pointer">Read Manual <i class="fa-solid fa-arrow-right text-[9px]"></i></button>
+                        </div>
+                    </div>
+                </article>`;
+        }
+
+        window.addEventListener('DOMContentLoaded', fetchWorkspaceDatabaseNodes);
+    </script>
+</body>
 </html>
