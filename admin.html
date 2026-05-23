@@ -43,7 +43,7 @@
             </div>
         </div>
         <button onclick="unlockDashboard()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-indigo-950/50 text-sm cursor-pointer flex items-center justify-center">Verify Identity <i class="fa-solid fa-shield-halved ml-2 text-xs"></i></button>
-        <p id="gate-error" class="hidden text-red-400 text-center text-xs font-semibold bg-red-950/30 border border-red-900/40 p-3 rounded-xl"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Invalid Credentials. Access Denied.</p>
+        <p id="gate-error" class="hidden text-red-400 text-center text-xs font-semibold bg-red-950/30 border border-red-900/40 p-3 rounded-xl"></p>
     </div>
 </div>
 
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
-                    <!-- Article Submission Editor Form Panel -->
+                    <!-- Form Panel Container -->
                     <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 space-y-5 shadow-2xl">
                         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
                             <h2 id="form-heading" class="text-sm font-black uppercase tracking-wider text-indigo-400"><i class="fa-solid fa-square-plus mr-1"></i> Compose Entry</h2>
@@ -208,6 +208,7 @@
             await signInWithEmailAndPassword(auth, email, password);
             errorContainer.classList.add('hidden');
         } catch (error) {
+            errorContainer.innerText = "Invalid Credentials. Administrative access configuration fault.";
             errorContainer.classList.remove('hidden');
         }
     };
