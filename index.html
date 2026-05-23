@@ -108,7 +108,7 @@
                     </div>
                     <button onclick="window.showSection('blog')" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 transition cursor-pointer">View All Indices <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
-                <!-- FIXED CONTAINER MATCHING TARGET ATTRIBUTE HOOK -->
+                <!-- TARGET HOOK CONTAINER FOR DYNAMIC INJECTION -->
                 <div id="featured-posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="col-span-full text-center py-12 text-slate-500">
                         <i class="fa-solid fa-circle-notch animate-spin text-2xl text-indigo-500 block mx-auto mb-2"></i> 
@@ -134,6 +134,10 @@
                     <i class="fa-solid fa-chevron-left mr-2 text-[10px]"></i> Return to Feed
                 </button>
                 <article class="glass-panel rounded-3xl p-6 md:p-14 shadow-2xl relative">
+                    <div id="article-hero-banner" class="w-full h-64 sm:h-80 relative overflow-hidden hidden rounded-2xl mb-8 border border-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10"></div>
+                        <img id="article-view-image" src="" alt="Hero Image" class="w-full h-full object-cover" />
+                    </div>
                     <div class="space-y-4 border-b border-slate-800 pb-8 mb-8">
                         <span id="article-view-category" class="bg-indigo-500/10 text-indigo-400 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md border border-indigo-500/20 inline-block">Category</span>
                         <h1 id="article-view-title" class="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">Article Headline</h1>
@@ -180,7 +184,7 @@
         const db = getFirestore(app);
         let cachedPosts = [];
 
-        // Global Navigation Architecture Context Layout Routing Controller 
+        // Dynamic State Tab Segment Router
         window.showSection = function(section) {
             document.getElementById('home-section').classList.add('hidden');
             document.getElementById('blog-section').classList.add('hidden');
@@ -201,6 +205,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
+        // FIXED ACTION SWITCHER: Appends dynamic location parameters perfectly onto active index trees
         window.viewArticleInline = function(postId) {
             const post = cachedPosts.find(p => String(p.id) === String(postId));
             if (!post) return;
@@ -210,7 +215,18 @@
             document.getElementById('article-view-date').innerHTML = `<i class="fa-solid fa-calendar text-slate-600"></i> ${post.date || ''}`;
             document.getElementById('article-view-content').innerHTML = post.content || '';
             
+            if(post.image) {
+                document.getElementById('article-view-image').src = post.image;
+                document.getElementById('article-hero-banner').classList.remove('hidden');
+            } else {
+                document.getElementById('article-hero-banner').classList.add('hidden');
+            }
+            
             window.showSection('article');
+
+            const targetSlug = post.slug || post.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+            const newPathURL = window.location.origin + window.location.pathname + '?article=' + targetSlug;
+            window.history.replaceState({ postId: postId }, post.title, newPathURL);
         };
 
         async function fetchWorkspaceDatabaseNodes() {
@@ -250,11 +266,21 @@
                     archiveGrid.innerHTML += generateCardHTML(post);
                 });
 
+                // Deep Linking URL Parameter Initialization Interceptor Pipeline
+                const urlParams = new URLSearchParams(window.location.search);
+                const articleSlug = urlParams.get('article');
+                if (articleSlug) {
+                    const targetPost = cachedPosts.find(p => (p.slug === articleSlug) || (p.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-') === articleSlug));
+                    if (targetPost) {
+                        window.viewArticleInline(targetPost.id);
+                    }
+                }
+
             } catch (err) {
                 console.error("Home View Synchronization Fault:", err);
                 const errorState = `
                     <div class="col-span-full text-center text-red-400/60 text-xs py-8">
-                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Synchronization with core node clusters interrupted.
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Alignment with network clusters interrupted.
                     </div>`;
                 document.getElementById('featured-posts-grid').innerHTML = errorState;
                 document.getElementById('all-posts-grid').innerHTML = errorState;
